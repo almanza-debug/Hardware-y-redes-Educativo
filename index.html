@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Guía Completa de Hardware y Redes</title>
+  <style>
+    /* ESTILOS GENERALES Y VARIABLES */
+    :root {
+      --primary: #2c3e50;
+      --primary-light: #34495e;
+      --secondary: #3498db;
+      --secondary-light: #5dade2;
+      --accent: #e74c3c;
+      --accent-light: #ec7063;
+      --light: #ecf0f1;
+      --dark: #2c3e50;
+      --success: #27ae60;
+      --warning: #f39c12;
+      --text: #333;
+      --text-light: #7f8c8d;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 10px 15px rgba(0, 0, 0, 0.15);
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    
+    /* TIPOGRAFÍA MEJORADA */
+    h1, h2, h3, h4 {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      color: var(--primary);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    a {
+      color: var(--secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    a:hover {
+      color: var(--secondary-light);
+    }
+    
+    /* ENCABEZADO Y NAVEGACIÓN MEJORADA */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .logo i {
+      font-size: 1.8rem;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    
+    .nav-menu a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* SECCIONES PRINCIPALES */
+    section {
+      padding: 6rem 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary);
+      font-size: 2.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+    
+    /* LAYOUT CON GRID Y FLEXBOX */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .flex-item {
+      flex: 1 1 300px;
+    }
+    
+    /* TARJETAS MEJORADAS */
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--secondary);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .card-icon {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin: 1rem 0;
+    }
+    
+    /* MODELO OSI INTERACTIVO MEJORADO */
+    .osi-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .osi-layer {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+    }
+    
+    .osi-layer:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .layer-number {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    /* QUIZ MEJORADO */
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .question {
+      margin-bottom: 2rem;
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .options {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    .option {
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .option:hover {
+      border-color: var(--secondary);
+      background: rgba(52, 152, 219, 0.05);
+    }
+    
+    .option.selected {
+      border-color: var(--secondary);
+      background: rgba(52, 152, 219, 0.1);
+    }
+    
+    .option.correct {
+      border-color: var(--success);
+      background: rgba(39, 174, 96, 0.1);
+    }
+    
+    .option.incorrect {
+      border-color: var(--accent);
+      background: rgba(231, 76, 60, 0.1);
+    }
+    
+    .option-marker {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .option.selected .option-marker {
+      background: var(--secondary);
+      color: white;
+      border-color: var(--secondary);
+    }
+    
+    /* BOTONES MEJORADOS */
+    .btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      font-weight: 500;
+      box-shadow: var(--shadow);
+    }
+    
+    .btn:hover {
+      background: var(--secondary-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    
+    .btn-success {
+      background: var(--success);
+    }
+    
+    .btn-success:hover {
+      background: #219a52;
+    }
+    
+    .btn-block {
+      display: block;
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+    
+    /* MODALES MEJORADOS */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius);
+      max-width: 600px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .close-btn {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+    
+    .close-btn:hover {
+      color: var(--accent);
+    }
+    
+    /* SECCIÓN INICIO MEJORADA */
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+    
+    .hero .btn {
+      background: white;
+      color: var(--primary);
+    }
+    
+    .hero .btn:hover {
+      background: var(--light);
+    }
+    
+    /* SECCIÓN HARDWARE MEJORADA */
+    .hardware-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .hardware-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    /* SECCIÓN REDES MEJORADA */
+    .networking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+    
+    .subnet-example {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--secondary);
+    }
+    
+    .subnet-example h4 {
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    .subnet-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .subnet-item {
+      padding: 0.5rem;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    /* RESPONSIVE DESIGN MEJORADO */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      }
+      
+      .nav-menu.active {
+        display: flex;
+      }
+      
+      section {
+        padding: 5rem 1rem 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* ESTILOS PARA ÍCONOS (USANDO EMOJIS COMO ÍCONOS) */
+    .icon {
+      font-style: normal;
+    }
+    
+    /* ANIMACIONES ADICIONALES */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* ESTILOS PARA RESULTADOS DEL QUIZ */
+    .quiz-result {
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-top: 2rem;
+    }
+    
+    .score {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--secondary);
+      margin: 1rem 0;
+    }
+    
+    .score-perfect {
+      color: var(--success);
+    }
+    
+    .score-good {
+      color: var(--warning);
+    }
+    
+    .score-poor {
+      color: var(--accent);
+    }
+    
+    /* FOOTER */
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- ENCABEZADO CON MENÚ DE NAVEGACIÓN -->
+  <header>
+    <nav class="nav-container">
+      <div class="logo">
+        <span class="icon">💻</span> Hardware & Redes
+      </div>
+      <button class="hamburger">☰</button>
+      <ul class="nav-menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#hardware">Hardware</a></li>
+        <li><a href="#redes">Redes</a></li>
+        <li><a href="#osi">Modelo OSI</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- SECCIÓN DE INICIO -->
+  <section id="inicio">
+    <div class="hero">
+      <h1>Guía Completa de Hardware y Redes</h1>
+      <p>Explora los fundamentos de los componentes de computadoras y los principios de networking en una experiencia interactiva y educativa.</p>
+      <a href="#hardware" class="btn">Comenzar a aprender</a>
+    </div>
+    
+    <div class="grid-container">
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Hardware Esencial</h3>
+        <p>Descubre los componentes físicos que forman una computadora, desde la CPU hasta los periféricos, y comprende cómo interactúan para ejecutar tareas.</p>
+        <p>El hardware representa la parte tangible de cualquier sistema informático, los elementos que puedes tocar y ver. Sin estos componentes, el software no tendría dónde ejecutarse.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <h3>Redes de Computadoras</h3>
+        <p>Aprende sobre los dispositivos y protocolos que permiten la comunicación entre computadoras, formando redes locales e internet.</p>
+        <p>Las redes han revolucionado la forma en que compartimos información, permitiendo la comunicación instantánea y el acceso a recursos globales desde cualquier lugar.</p>
+      </div>
+      
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Modelo OSI</h3>
+        <p>Explora el modelo de referencia de interconexión de sistemas abiertos, un marco conceptual que divide las funciones de red en 7 capas.</p>
+        <p>Este modelo estandarizado permite entender cómo los datos viajan a través de una red, desde la aplicación hasta el medio físico de transmisión.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE HARDWARE -->
+  <section id="hardware">
+    <h2 class="section-title">Componentes de Hardware</h2>
+    
+    <div class="hardware-grid">
+      <div class="card hardware-card">
+        <h3>CPU (Unidad Central de Procesamiento)</h3>
+        <p>La <strong>CPU</strong> es el cerebro de la computadora, responsable de ejecutar instrucciones y procesar datos. Se compone de la Unidad de Control, que dirige las operaciones, y la Unidad Aritmético-Lógica (ALU), que realiza cálculos matemáticos y operaciones lógicas.</p>
+        <p>Las CPUs modernas tienen múltiples núcleos que permiten ejecutar varias tareas simultáneamente, aumentando significativamente el rendimiento. La velocidad se mide en gigahercios (GHz), indicando cuántos ciclos de procesamiento puede completar por segundo.</p>
+        <!-- Para cambiar la imagen: reemplazar la URL en src -->
+        <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?w=600&h=300&fit=crop" alt="Procesador CPU" class="card-image">
+      </div>
+      
+      <div class="card hardware-card">
+        <h3>RAM (Memoria de Acceso Aleatorio)</h3>
+        <p>La <strong>RAM</strong> es memoria volátil que almacena temporalmente datos y programas en ejecución. A diferencia del almacenamiento permanente, la RAM pierde su contenido cuando se apaga la computadora, pero ofrece velocidades de acceso mucho más rápidas.</p>
+        <p>Cuanta más RAM tenga un sistema, más aplicaciones podrá ejecutar simultáneamente sin ralentizaciones. La memoria RAM actúa como área de trabajo temporal donde la CPU puede acceder rápidamente a los datos que necesita para realizar sus operaciones.</p>
+        <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=600&h=300&fit=crop" alt="Módulos de RAM" class="card-image">
+      </div>
+      
+      <div class="card hardware-card">
+        <h3>Almacenamiento</h3>
+        <p>Los dispositivos de <strong>almacenamiento</strong> como HDD (discos duros mecánicos) y SSD (unidades de estado sólido) guardan datos de forma permanente. Los HDD utilizan platos giratorios y cabezales magnéticos, mientras que los SSD usan memoria flash, siendo estos últimos mucho más rápidos pero generalmente más costosos por gigabyte.</p>
+        <p>La evolución del almacenamiento ha sido notable: desde los disquetes de 1.44MB hasta los SSD NVMe que pueden alcanzar velocidades de varios gigabytes por segundo, revolucionando los tiempos de carga del sistema y las aplicaciones.</p>
+        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600&h=300&fit=crop" alt="Unidades de almacenamiento SSD y HDD" class="card-image">
+      </div>
+      
+      <div class="card hardware-card">
+        <h3>Placa Base (Motherboard)</h3>
+        <p>La <strong>placa base</strong> conecta todos los componentes del computador y permite su comunicación. Es el circuito impreso principal que alberga la CPU, RAM, slots de expansión y puertos de conexión. Actúa como el sistema nervioso central del equipo.</p>
+        <p>Las placas base varían en tamaño (factor de forma) y características según su propósito. Incluyen el chipset que gestiona el flujo de datos entre componentes, BIOS/UEFI para la inicialización del sistema, y diversos conectores para periféricos y dispositivos de almacenamiento.</p>
+        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=300&fit=crop" alt="Placa base de computadora" class="card-image">
+      </div>
+      
+      <div class="card hardware-card">
+        <h3>PSU (Fuente de Alimentación)</h3>
+        <p>La <strong>fuente de alimentación</strong> (PSU) proporciona energía eléctrica a todos los componentes del sistema. Convierte la corriente alterna (AC) de la toma de pared en corriente continua (DC) a diferentes voltajes requeridos por los componentes del computador.</p>
+        <p>La eficiencia de una PSU se certifica con ratings 80 Plus (Bronze, Silver, Gold, Platinum, Titanium) que indican qué porcentaje de la energía que consume se convierte efectivamente en energía utilizable, reduciendo el calor desperdiciado y el consumo eléctrico.</p>
+        <img src="https://images.unsplash.com/photo-1605601750098-1cc6c4d58ce4?w=600&h=300&fit=crop" alt="Fuente de alimentación para PC" class="card-image">
+      </div>
+      
+      <div class="card hardware-card">
+        <h3>Periféricos</h3>
+        <p>Los <strong>periféricos</strong> son dispositivos externos como teclado, mouse, monitor, impresora y escáner que permiten la interacción con la computadora. Se clasifican en periféricos de entrada (capturan datos), salida (muestran resultados) y entrada/salida (ambas funciones).</p>
+        <p>La evolución de los periféricos ha transformado radicalmente la experiencia de usuario: desde los monitores monocromáticos hasta pantallas 4K, y desde teclados mecánicos hasta interfaces táctiles y de realidad virtual que ofrecen formas completamente nuevas de interactuar con la tecnología.</p>
+        <img src="https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=600&h=300&fit=crop" alt="Periféricos de computadora" class="card-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE REDES -->
+  <section id="redes">
+    <h2 class="section-title">Conceptos de Redes</h2>
+    
+    <div class="networking-grid">
+      <div class="card">
+        <h3>NIC (Tarjeta de Interfaz de Red)</h3>
+        <p>La <strong>Tarjeta de Interfaz de Red (NIC)</strong> es el hardware que permite a un dispositivo conectarse a una red. Cada NIC tiene una dirección MAC única que identifica al dispositivo físicamente en la red. Puede ser integrada en la placa base o una tarjeta de expansión separada.</p>
+        <p>Las NIC modernas soportan diferentes velocidades (100Mbps, 1Gbps, 10Gbps) y tecnologías (Ethernet, Wi-Fi, Fibra Óptica). En dispositivos móviles, la funcionalidad de NIC suele estar integrada en el chipset principal del dispositivo.</p>
+      </div>
+      
+      <div class="card">
+        <h3>Switch</h3>
+        <p>Un <strong>switch</strong> es un dispositivo que conecta múltiples dispositivos en una red local (LAN). A diferencia de los hubs que envían datos a todos los puertos, los switches son inteligentes y envían datos solo al dispositivo destino, mejorando la eficiencia y seguridad de la red.</p>
+        <p>Los switches operan en la Capa 2 del modelo OSI (Enlace de Datos) y utilizan direcciones MAC para dirigir el tráfico. Los switches gestionados permiten configurar VLANs, priorización de tráfico y monitoreo, ofreciendo control avanzado sobre la red.</p>
+      </div>
+      
+      <div class="card">
+        <h3>Router</h3>
+        <p>El <strong>router</strong> conecta diferentes redes y dirige el tráfico entre ellas. Mientras los switches conectan dispositivos dentro de una misma red, los routers conectan redes diferentes, como una red doméstica con internet.</p>
+        <p>Los routers operan en la Capa 3 del modelo OSI (Red) y utilizan direcciones IP para tomar decisiones de enrutamiento. Mantienen tablas de enrutamiento que les permiten determinar la mejor ruta para enviar paquetes de datos hacia su destino a través de múltiples redes interconectadas.</p>
+      </div>
+      
+      <div class="card">
+        <h3>Dirección IP</h3>
+        <p>Una <strong>dirección IP</strong> es un identificador único asignado a cada dispositivo en una red que utiliza el protocolo IP para comunicarse. Existen dos versiones principales: IPv4 (32 bits, formato decimal) e IPv6 (128 bits, formato hexadecimal) diseñada para resolver la escasez de direcciones IPv4.</p>
+        <p>Las direcciones IP pueden ser públicas (enrutables en internet) o privadas (uso interno en redes locales). Las IPs públicas son asignadas por los ISPs, mientras que las privadas siguen rangos específicos (10.x.x.x, 172.16.x.x-172.31.x.x, 192.168.x.x) definidos en RFC 1918.</p>
+      </div>
+      
+      <div class="card">
+        <h3>DHCP</h3>
+        <p>El <strong>Protocolo de Configuración Dinámica de Host (DHCP)</strong> asigna automáticamente direcciones IP a dispositivos en una red. Sin DHCP, los administradores tendrían que configurar manualmente cada dispositivo con una IP estática, un proceso laborioso y propenso a errores.</p>
+        <p>DHCP opera mediante un proceso de cuatro pasos: descubrimiento, oferta, solicitud y reconocimiento (DORA). Un servidor DHCP gestiona un pool de direcciones IP y asigna leases temporales a los dispositivos, renovándolos periódicamente o recuperándolos cuando los dispositivos se desconectan.</p>
+      </div>
+      
+      <div class="card">
+        <h3>DNS</h3>
+        <p>El <strong>Sistema de Nombres de Dominio (DNS)</strong> traduce nombres de dominio legibles por humanos (como www.ejemplo.com) a direcciones IP numéricas que los equipos pueden entender. Actúa como la "agenda de direcciones" de internet.</p>
+        <p>El DNS funciona mediante una jerarquía distribuida de servidores. Cuando introduces una URL, tu dispositivo consulta recursivamente a servidores DNS hasta encontrar la IP correspondiente. Este sistema distribuido garantiza resiliencia y escalabilidad global para la resolución de nombres en internet.</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Ejemplo de Subnetting: 192.168.10.0/26</h3>
+      <p>El <strong>subnetting</strong> divide una red grande en subredes más pequeñas para mejorar el rendimiento y la seguridad. La notación CIDR /26 indica que 26 bits se utilizan para la porción de red, dejando 6 bits para hosts.</p>
+      
+      <div class="subnet-example">
+        <h4>Detalles de la subred 192.168.10.0/26</h4>
+        <div class="subnet-details">
+          <div class="subnet-item">
+            <strong>Máscara de subred:</strong><br>
+            255.255.255.192
+          </div>
+          <div class="subnet-item">
+            <strong>Hosts disponibles:</strong><br>
+            62 (2^6 - 2 = 62)
+          </div>
+          <div class="subnet-item">
+            <strong>Rango de direcciones:</strong><br>
+            192.168.10.1 - 192.168.10.62
+          </div>
+          <div class="subnet-item">
+            <strong>Dirección de broadcast:</strong><br>
+            192.168.10.63
+          </div>
+        </div>
+      </div>
+      
+      <p>En una red /26, los primeros 26 bits identifican la red, y los 6 bits restantes identifican los hosts específicos. Se restan 2 direcciones del total posible: la dirección de red (192.168.10.0) y la dirección de broadcast (192.168.10.63), dejando 62 direcciones utilizables para dispositivos.</p>
+    </div>
+  </section>
+
+  <!-- MODELO OSI INTERACTIVO -->
+  <section id="osi">
+    <h2 class="section-title">Modelo OSI Interactivo</h2>
+    <p style="text-align: center; margin-bottom: 2rem;">Haz clic en cada capa para conocer sus funciones y ejemplos específicos</p>
+    
+    <div class="osi-container">
+      <div class="osi-layer" data-layer="7">
+        <div class="layer-number">7</div>
+        <div>Aplicación</div>
+        <div>🔍</div>
+      </div>
+      <div class="osi-layer" data-layer="6">
+        <div class="layer-number">6</div>
+        <div>Presentación</div>
+        <div>🔒</div>
+      </div>
+      <div class="osi-layer" data-layer="5">
+        <div class="layer-number">5</div>
+        <div>Sesión</div>
+        <div>🤝</div>
+      </div>
+      <div class="osi-layer" data-layer="4">
+        <div class="layer-number">4</div>
+        <div>Transporte</div>
+        <div>📦</div>
+      </div>
+      <div class="osi-layer" data-layer="3">
+        <div class="layer-number">3</div>
+        <div>Red</div>
+        <div>🧭</div>
+      </div>
+      <div class="osi-layer" data-layer="2">
+        <div class="layer-number">2</div>
+        <div>Enlace de Datos</div>
+        <div>🔗</div>
+      </div>
+      <div class="osi-layer" data-layer="1">
+        <div class="layer-number">1</div>
+        <div>Física</div>
+        <div>⚡</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ DE EVALUACIÓN -->
+  <section id="quiz">
+    <h2 class="section-title">Quiz de Conocimientos</h2>
+    <p style="text-align: center; margin-bottom: 2rem;">Pon a prueba lo que has aprendido sobre hardware y redes</p>
+    
+    <div class="quiz-container">
+      <div id="question-1" class="question">
+        <h3>1. ¿Qué componente es conocido como el "cerebro" de la computadora?</h3>
+        <div class="options">
+          <div class="option" data-correct="false">
+            <span class="option-marker">A</span>
+            <span>RAM - Memoria de acceso aleatorio que almacena datos temporalmente</span>
+          </div>
+          <div class="option" data-correct="true">
+            <span class="option-marker">B</span>
+            <span>CPU - Unidad central de procesamiento que ejecuta instrucciones</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">C</span>
+            <span>Disco Duro - Almacenamiento permanente de datos y programas</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">D</span>
+            <span>Fuente de Poder - Proporciona energía a todos los componentes</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="question-2" class="question">
+        <h3>2. ¿Qué dispositivo se utiliza para conectar múltiples computadoras en una red local?</h3>
+        <div class="options">
+          <div class="option" data-correct="false">
+            <span class="option-marker">A</span>
+            <span>Router - Conecta diferentes redes y dirige el tráfico entre ellas</span>
+          </div>
+          <div class="option" data-correct="true">
+            <span class="option-marker">B</span>
+            <span>Switch - Conecta dispositivos dentro de una misma red local</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">C</span>
+            <span>Módem - Modula y demodula señales para transmisión por líneas telefónicas</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">D</span>
+            <span>Hub - Dispositivo obsoleto que retransmite datos a todos los puertos</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="question-3" class="question">
+        <h3>3. En el modelo OSI, ¿qué capa se encarga del direccionamiento lógico y enrutamiento?</h3>
+        <div class="options">
+          <div class="option" data-correct="false">
+            <span class="option-marker">A</span>
+            <span>Capa de Transporte - Gestiona la entrega extremo a extremo de datos</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">B</span>
+            <span>Capa de Enlace de Datos - Proporciona direccionamiento físico (MAC)</span>
+          </div>
+          <div class="option" data-correct="true">
+            <span class="option-marker">C</span>
+            <span>Capa de Red - Se encarga del direccionamiento lógico (IP) y enrutamiento</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">D</span>
+            <span>Capa Física - Transmite bits a través del medio de comunicación</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="question-4" class="question">
+        <h3>4. ¿Qué protocolo asigna automáticamente direcciones IP a los dispositivos en una red?</h3>
+        <div class="options">
+          <div class="option" data-correct="false">
+            <span class="option-marker">A</span>
+            <span>DNS - Traduce nombres de dominio a direcciones IP</span>
+          </div>
+          <div class="option" data-correct="true">
+            <span class="option-marker">B</span>
+            <span>DHCP - Asigna configuraciones de red automáticamente</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">C</span>
+            <span>HTTP - Protocolo para transferencia de hipertexto en la web</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">D</span>
+            <span>FTP - Protocolo para transferencia de archivos</span>
+          </div>
+        </div>
+      </div>
+      
+      <div id="question-5" class="question">
+        <h3>5. En la subred 192.168.1.0/26, ¿cuántas direcciones IP están disponibles para hosts?</h3>
+        <div class="options">
+          <div class="option" data-correct="false">
+            <span class="option-marker">A</span>
+            <span>30 hosts - Resultado de una máscara /27 (32-5=27 bits de host)</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">B</span>
+            <span>126 hosts - Resultado de una máscara /25 (32-7=25 bits de host)</span>
+          </div>
+          <div class="option" data-correct="true">
+            <span class="option-marker">C</span>
+            <span>62 hosts - 2^6 - 2 = 64 - 2 = 62 direcciones utilizables</span>
+          </div>
+          <div class="option" data-correct="false">
+            <span class="option-marker">D</span>
+            <span>254 hosts - Resultado de una máscara /24 (red clase C estándar)</span>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-success btn-block" id="btn-submit-quiz">
+        <span class="icon">📝</span> Enviar Respuestas
+      </button>
+      <div id="quiz-result"></div>
+    </div>
+  </section>
+
+  <!-- MODAL DE INFORMACIÓN DEL PROYECTO -->
+  <div class="modal" id="modal-info">
+    <div class="modal-content">
+      <button class="close-btn">&times;</button>
+      <h2>Ficha del Proyecto</h2>
+      <div class="card">
+        <p><strong>Nombre del Proyecto:</strong>Hardware y Redes</p>
+        <p><strong>Autor:</strong> Luis Almanza Aritama</p>
+        <p><strong>Curso:</strong> Hardware y Redes de Computadores</p>
+        <p><strong>Universidad:</strong> Universidad del Magdalena</p>
+        <p><strong>Año:</strong> 2025</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CAPAS OSI -->
+  <div class="modal" id="modal-osi">
+    <div class="modal-content">
+      <button class="close-btn">&times;</button>
+      <div id="osi-content">
+        <!-- Contenido dinámico de las capas OSI -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <p>Guía Completa de Hardware y Redes - Proyecto Educativo</p>
+      <p>© 2025 - Luis Almanza - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    // NAVEGACIÓN Y MENÚ HAMBURGUESA
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+      
+      // Alternar menú hamburguesa
+      hamburger.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+      });
+      
+      // Cerrar menú al hacer clic en un enlace (móvil)
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+          navMenu.classList.remove('active');
+        });
+      });
+      
+      // Botón de información del proyecto
+      document.querySelector('.logo').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('modal-info').classList.add('active');
+      });
+      
+      // Cerrar modales
+      document.querySelectorAll('.close-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          this.closest('.modal').classList.remove('active');
+        });
+      });
+      
+      // Cerrar modal al hacer clic fuera
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // MODELO OSI INTERACTIVO
+    const osiLayers = {
+      7: {
+        name: "Capa de Aplicación",
+        functions: [
+          "Interfaz entre la aplicación de usuario y la red",
+          "Servicios de red para aplicaciones",
+          "Identificación de socios de comunicación",
+          "Sincronización y acuerdo sobre procedimientos para la recuperación de errores"
+        ],
+        examples: "Protocolos: HTTP, FTP, SMTP, DNS. Aplicaciones: Navegadores web, clientes de correo, transferencia de archivos.",
+        details: "Es la capa más cercana al usuario final. Proporciona servicios de red directamente a las aplicaciones del usuario. No incluye a las aplicaciones en sí, sino a los servicios que estas utilizan para comunicarse a través de la red."
+      },
+      6: {
+        name: "Capa de Presentación",
+        functions: [
+          "Traducción de datos entre formatos",
+          "Compresión y descompresión de datos",
+          "Cifrado y descifrado para seguridad",
+          "Conversión de codificaciones de caracteres"
+        ],
+        examples: "Formatos: JPEG, GIF, MPEG, SSL/TLS. Conversiones: ASCII a EBCDIC, big-endian a little-endian.",
+        details: "Actúa como traductor de la red, asegurando que los datos del emisor sean comprensibles para la aplicación del receptor. Maneja la sintaxis y semántica de la información transmitida."
+      },
+      5: {
+        name: "Capa de Sesión",
+        functions: [
+          "Establecimiento, mantenimiento y terminación de sesiones",
+          "Sincronización del diálogo entre dispositivos",
+          "Coordinación de quién transmite y cuándo",
+          "Puntos de control y recuperación"
+        ],
+        examples: "Protocolos: NetBIOS, RPC, PAP. Aplicaciones: Sesiones remotas, llamadas a procedimientos.",
+        details: "Gestiona los diálogos entre computadoras. Establece, gestiona y finaliza las conexiones entre aplicaciones locales y remotas. Proporciona servicios de diálogo full-duplex o half-duplex."
+      },
+      4: {
+        name: "Capa de Transporte",
+        functions: [
+          "Entrega extremo a extremo de mensajes completos",
+          "Segmentación y reensamblado de datos",
+          "Control de flujo para evitar saturación",
+          "Control de errores y recuperación"
+        ],
+        examples: "Protocolos: TCP (orientado a conexión), UDP (no orientado a conexión). Servicios: Establecimiento de conexiones, entrega confiable.",
+        details: "Proporciona transferencia transparente de datos entre sistemas finales. Garantiza la entrega completa de los datos, manejando la segmentación, control de flujo y recuperación de errores."
+      },
+      3: {
+        name: "Capa de Red",
+        functions: [
+          "Direccionamiento lógico (IP)",
+          "Enrutamiento de paquetes a través de redes",
+          "Fragmentación y reensamblado de paquetes",
+          "Control de congestión"
+        ],
+        examples: "Dispositivos: Routers. Protocolos: IP, ICMP, IPsec. Direccionamiento: IPv4, IPv6.",
+        details: "Responsable del enrutamiento de paquetes desde el origen al destino, posiblemente a través de múltiples redes. Determina la mejor ruta basándose en condiciones de red, prioridad y otros factores."
+      },
+      2: {
+        name: "Capa de Enlace de Datos",
+        functions: [
+          "Direccionamiento físico (MAC)",
+          "Control de acceso al medio (MAC)",
+          "Detección y corrección de errores",
+          "Sincronización de tramas"
+        ],
+        examples: "Dispositivos: Switches, bridges. Protocolos: Ethernet, PPP, HDLC. Tecnologías: LAN, WLAN.",
+        details: "Proporciona transferencia confiable de datos a través del medio físico. Se encarga de la encapsulación de paquetes en tramas, el control de acceso al medio y la detección de errores."
+      },
+      1: {
+        name: "Capa Física",
+        functions: [
+          "Transmisión de bits a través del medio",
+          "Definición de especificaciones eléctricas, mecánicas y funcionales",
+          "Establecimiento y terminación de conexiones",
+          "Codificación y modulación de señales"
+        ],
+        examples: "Medios: Cable UTP, fibra óptica, wireless. Señales: Eléctricas, ópticas, radiofrecuencia. Conectores: RJ45, SC, LC.",
+        details: "Define las especificaciones para la activación, mantenimiento y desactivación del enlace físico entre sistemas. Se ocupa de la transmisión de flujos de bits sin procesar a través del medio físico."
+      }
+    };
+
+    // Agregar eventos a las capas OSI
+    document.querySelectorAll('.osi-layer').forEach(layer => {
+      layer.addEventListener('click', function() {
+        const layerNum = this.getAttribute('data-layer');
+        const layerInfo = osiLayers[layerNum];
+        
+        document.getElementById('osi-content').innerHTML = `
+          <h2>Capa ${layerNum}: ${layerInfo.name}</h2>
+          <div class="card">
+            <h3>Funciones Principales:</h3>
+            <ul>
+              ${layerInfo.functions.map(func => `<li>${func}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Ejemplos y Protocolos:</h3>
+            <p>${layerInfo.examples}</p>
+          </div>
+          <div class="card">
+            <h3>Detalles Adicionales:</h3>
+            <p>${layerInfo.details}</p>
+          </div>
+        `;
+        
+        document.getElementById('modal-osi').classList.add('active');
+      });
+    });
+
+    // QUIZ INTERACTIVO
+    document.querySelectorAll('.option').forEach(option => {
+      option.addEventListener('click', function() {
+        // Remover selección de otras opciones en la misma pregunta
+        const question = this.closest('.question');
+        question.querySelectorAll('.option').forEach(opt => {
+          opt.classList.remove('selected');
+        });
+        
+        // Seleccionar esta opción
+        this.classList.add('selected');
+      });
+    });
+
+    document.getElementById('btn-submit-quiz').addEventListener('click', function() {
+      let score = 0;
+      const questions = document.querySelectorAll('.question');
+      let allAnswered = true;
+      
+      // Verificar que todas las preguntas tengan respuesta
+      questions.forEach(question => {
+        const selected = question.querySelector('.option.selected');
+        if (!selected) {
+          allAnswered = false;
+        }
+      });
+      
+      if (!allAnswered) {
+        alert('Por favor, responde todas las preguntas antes de enviar el quiz.');
+        return;
+      }
+      
+      // Calcular puntaje y mostrar resultados
+      questions.forEach(question => {
+        const selected = question.querySelector('.option.selected');
+        if (selected && selected.getAttribute('data-correct') === 'true') {
+          score++;
+          selected.classList.add('correct');
+        } else if (selected) {
+          selected.classList.add('incorrect');
+          // Mostrar la respuesta correcta
+          question.querySelector('.option[data-correct="true"]').classList.add('correct');
+        }
+      });
+      
+      const resultElement = document.getElementById('quiz-result');
+      let scoreClass = 'score-poor';
+      if (score >= 4) scoreClass = 'score-good';
+      if (score === 5) scoreClass = 'score-perfect';
+      
+      resultElement.innerHTML = `
+        <div class="quiz-result">
+          <h3>Resultado del Quiz</h3>
+          <div class="score ${scoreClass}">${score}/5</div>
+          <p>Obtuviste ${score} de ${questions.length} preguntas correctas</p>
+          <p>Porcentaje: ${Math.round((score / questions.length) * 100)}%</p>
+          ${score === questions.length ? 
+            '<p style="color:var(--success); font-weight:bold; margin-top:1rem;">¡Excelente trabajo! Dominas los conceptos fundamentales.</p>' : 
+            score >= 3 ? 
+            '<p style="color:var(--warning); font-weight:bold; margin-top:1rem;">Buen trabajo, pero hay conceptos que necesitas repasar.</p>' :
+            '<p style="color:var(--accent); font-weight:bold; margin-top:1rem;">Necesitas estudiar más los conceptos fundamentales.</p>'
+          }
+          <button class="btn" onclick="location.reload()" style="margin-top:1rem;">Intentar de nuevo</button>
+        </div>
+      `;
+      
+      // Desplazar hacia el resultado
+      resultElement.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+  <script src='https://cdn.jotfor.ms/agent/embedjs/019aad8c95f6774fb99c93d9e3b83f25bbfc/embed.js'>
+</script>
+
+</body>
+</html>
+
+<!-- 
+INSTRUCCIONES PARA EDITAR EL PROYECTO:
+
+1. CAMBIAR TÍTULO DEL PROYECTO:
+   - Buscar la línea: <title>Guía Completa de Hardware y Redes</title>
+   - Reemplazar el texto entre las etiquetas <title>
+
+2. CAMBIAR AUTOR E INFORMACIÓN DEL PROYECTO:
+   - Buscar el modal con id="modal-info"
+   - Modificar los textos dentro de la sección "Ficha del Proyecto"
+
+3. EDITAR PREGUNTAS DEL QUIZ:
+   - Buscar las secciones con id="question-1" hasta "question-5"
+   - Modificar el texto dentro de <h3> para cambiar la pregunta
+   - Modificar las opciones dentro de los div con clase "option"
+   - Cambiar data-correct="true" a la opción correcta
+
+4. AÑADIR MÁS CONTENIDO:
+   - En las secciones de Hardware y Redes, puedes agregar más tarjetas
+   - Copiar la estructura existente de .card y modificar el contenido
+
+5. CAMBIAR IMÁGENES ONLINE:
+   - Las imágenes usan URLs absolutas (ejemplo en la sección Hardware)
+   - Reemplazar el valor del atributo "src" con una nueva URL
+   - Formato: src="https://ejemplo.com/imagen.jpg"
+   - Asegurarse que la URL sea pública y accesible
+
+NOTA: Todas las modificaciones se hacen directamente en este archivo HTML.
+No se requieren conocimientos de programación avanzados, solo editar textos.
+-->
